@@ -14,7 +14,17 @@ mvp        -- minial viable product (минимальный функционал
 validation -- проверка различных сценариев использования
 """
 from symbol_builders import get_symbol_builder
+import time
 
+
+def timeit(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        elapsed_time = time.time() - start_time
+        print(f"Функция '{func.__name__}' выполнена  за {elapsed_time:.6f} second.")
+        return result
+    return wrapper
 
 def main():
     while True:
@@ -23,7 +33,7 @@ def main():
             break
         print_text(requested_text)
 
-
+@timeit
 def print_text(text: str) -> None:
     text_rows = get_text_rows(text)
     print('\n'.join(text_rows))

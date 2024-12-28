@@ -9,6 +9,7 @@ BuilderType = Callable[[], list[str]]
 registered_symbol_builders = { }
 
 
+
 def register_symbol_builder(letter: str, print_character: str = '@') -> Callable[[BuilderType], BuilderType]:
     def register(original_symbol_builder: BuilderType) -> BuilderType:
         def decorated_symbol_builder() -> list[str]:
@@ -195,7 +196,7 @@ def build_o_letter() -> list[str]:
         '         ',
     ]
 
-@register_symbol_builder('f')
+@register_symbol_builder('p')
 def build_p_letter() -> list[str]:
     return [
         '******** ',
